@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Product_list = () => {
+  const navigate = useNavigate();
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [sortBy, setSortBy] = useState("default");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
@@ -196,6 +198,10 @@ const Product_list = () => {
     );
   };
 
+  const handleProductClick = (productId) => {
+    navigate(`/product`, { state: { productId } });
+  };
+
   // Show products filtered by selected brands and the current price range.
   const filteredProducts = products
     .filter((product) => {
@@ -370,12 +376,16 @@ const Product_list = () => {
               {paginatedProducts.map((p) => (
                 <div
                   key={p.id}
+                  onClick={() => handleProductClick(p.id)}
                   className="group flex h-full flex-col rounded-xl bg-white p-3 text-center shadow transition hover:shadow-lg"
                 >
                   <div className="flex items-start justify-end">
                     <button
                       type="button"
-                      onClick={() => toggleWishlist(p.id)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        toggleWishlist(p.id);
+                      }}
                       aria-label={
                         wishlist.includes(p.id)
                           ? `Remove ${p.name} from wishlist`
@@ -424,7 +434,11 @@ const Product_list = () => {
                     <p className="mt-1 text-sm text-gray-500">{p.taxInfo}</p>
                   </div>
 
-                  <button className="mt-3 w-full self-center rounded-full bg-[#113768CC] py-2 text-white transition hover:bg-blue-950 sm:w-60">
+                  <button
+                    type="button"
+                    onClick={(event) => event.stopPropagation()}
+                    className="mt-3 w-full self-center rounded-full bg-[#113768CC] py-2 text-white transition hover:bg-blue-950 sm:w-60"
+                  >
                     Add to Cart
                   </button>
                 </div>
