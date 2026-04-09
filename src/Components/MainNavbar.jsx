@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   User,
   ChevronDown,
@@ -14,6 +15,7 @@ import {
 
 const MainNavbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const menu = [
     { name: "Login", icon: <LogIn size={16} /> },
@@ -63,7 +65,10 @@ const MainNavbar = () => {
             </div>
 
             {/* CART ICON */}
-            <div className="bg-yellow-400 p-2 rounded-full">
+            <div
+              className="bg-yellow-400 p-2 rounded-full cursor-pointer"
+              onClick={() => navigate("/cart_page")}
+            >
               <ShoppingCart size={18} />
             </div>
 
@@ -100,7 +105,10 @@ const MainNavbar = () => {
           </div>
 
           {/* CART */}
-          <div className="flex items-center gap-3 cursor-pointer">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => navigate("/cart_page")}
+          >
             <div className="bg-yellow-400 p-3 rounded-full">
               <ShoppingCart size={20} />
             </div>
