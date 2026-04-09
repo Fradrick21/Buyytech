@@ -146,14 +146,14 @@ const overviewCards = [
   {
     title: "Worry-free Super Fast Performance",
     description:
-      "The ExpertBook P1 features a Gen Intel Core i3 (U-series) Processor, 8GB DDR5 RAM (expandable u...",
+      "The ExpertBook P1 features a Gen Intel Core i3 (U-series) Processor, 8GB DDR5 RAM, and a fast SSD that keeps multitasking smooth. It is designed for everyday office work, browsing, meetings, content viewing, and reliable performance throughout the day without unnecessary slowdowns.",
     image:
       "https://rukminim2.flixcart.com/image/832/832/xif0q/computer/p/i/a/-original-imahg53uwgmhzfcd.jpeg?q=90",
   },
   {
     title: "Built for Worry-Free Business",
     description:
-      "Discover the ASUS ExpertBook P1, powered by the 13th Gen Intel Core i3 (U-series) processor and load...",
+      "Discover the ASUS ExpertBook P1, powered by the 13th Gen Intel Core i3 (U-series) processor and built with a practical design for professional use. Its lightweight body, dependable battery life, and business-ready build make it a solid choice for work, study, travel, and daily productivity tasks.",
     image:
       "https://rukminim2.flixcart.com/image/832/832/xif0q/computer/x/n/b/-original-imahg53ubg53fcgr.jpeg?q=90",
   },
@@ -210,6 +210,8 @@ function Product({ productId = null }) {
   const [selectedVariant, setSelectedVariant] = useState(1);
   const images = mediaItems.map((item) => item.image);
   const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [expandedReview, setExpandedReview] = useState(null);
+  const [expandedOverview, setExpandedOverview] = useState(null);
   const [showEmiCard, setShowEmiCard] = useState(true);
   const [showDeliveryDetails, setShowDeliveryDetails] = useState(true);
   const [showOffersSection, setShowOffersSection] = useState(true);
@@ -675,8 +677,20 @@ function Product({ productId = null }) {
                         {card.title}
                       </h3>
                       <p className="mt-1 text-[15px] leading-6 text-slate-600">
-                        {card.description}
-                        <span className="cursor-pointer font-semibold text-[#1c63e6]">more</span>
+                        {expandedOverview === card.title
+                          ? card.description
+                          : `${card.description.slice(0, 95)}...`}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedOverview((prev) =>
+                              prev === card.title ? null : card.title
+                            )
+                          }
+                          className="ml-1 cursor-pointer font-semibold text-[#1c63e6]"
+                        >
+                          {expandedOverview === card.title ? "less" : "more"}
+                        </button>
                       </p>
                     </div>
                   </div>
@@ -917,8 +931,20 @@ function Product({ productId = null }) {
                         {card.title}
                       </h3>
                       <p className="mt-1 text-[15px] leading-6 text-slate-600">
-                        {card.description}
-                        <span className="cursor-pointer font-semibold text-[#1c63e6]">more</span>
+                        {expandedOverview === card.title
+                          ? card.description
+                          : `${card.description.slice(0, 95)}...`}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedOverview((prev) =>
+                              prev === card.title ? null : card.title
+                            )
+                          }
+                          className="ml-1 cursor-pointer font-semibold text-[#1c63e6]"
+                        >
+                          {expandedOverview === card.title ? "less" : "more"}
+                        </button>
                       </p>
                     </div>
                   </div>
@@ -946,8 +972,20 @@ function Product({ productId = null }) {
                   {card.title}
                 </h3>
                 <p className="mt-1 text-[15px] leading-6 text-slate-600">
-                  {card.description}
-                  <span className="cursor-pointer font-semibold text-[#1c63e6]">more</span>
+                  {expandedOverview === card.title
+                    ? card.description
+                    : `${card.description.slice(0, 95)}...`}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedOverview((prev) =>
+                        prev === card.title ? null : card.title
+                      )
+                    }
+                    className="ml-1 cursor-pointer font-semibold text-[#1c63e6]"
+                  >
+                    {expandedOverview === card.title ? "less" : "more"}
+                  </button>
                 </p>
               </div>
             </div>
@@ -1038,8 +1076,20 @@ function Product({ productId = null }) {
                     <span className="text-[14px] text-slate-400">6 months ago</span>
                   </div>
                   <p className="text-[15px] leading-7 text-slate-700">
-                    The laptop is sturdy and well built at the price point it comes s...
-                    <span className="cursor-pointer font-semibold text-[#1c63e6]">more</span>
+                    {expandedReview === "good-choice"
+                      ? "The laptop is sturdy and well built at the price point it comes with. The keyboard feels comfortable, the display is sharp, and daily work stays smooth even with multiple apps open."
+                      : "The laptop is sturdy and well built at the price point it comes s..."}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedReview((prev) =>
+                          prev === "good-choice" ? null : "good-choice"
+                        )
+                      }
+                      className="ml-1 cursor-pointer font-semibold text-[#1c63e6]"
+                    >
+                      {expandedReview === "good-choice" ? "less" : "more"}
+                    </button>
                   </p>
                   <div className="mt-4 text-[14px] text-slate-500">Shrujan Rajdeep</div>
                   <div className="text-[14px] text-slate-400">Bronze Reviewer</div>
@@ -1058,8 +1108,20 @@ function Product({ productId = null }) {
                     <span className="text-[14px] text-slate-400">1 month ago</span>
                   </div>
                   <p className="text-[15px] leading-7 text-slate-700">
-                    The build quality is solid. Even though it is compact, the machine ma...
-                    <span className="cursor-pointer font-semibold text-[#1c63e6]">more</span>
+                    {expandedReview === "excellent"
+                      ? "The build quality is solid. Even though it is compact, the machine manages heat well and performs reliably for browsing, office work, meetings, and light creative tasks."
+                      : "The build quality is solid. Even though it is compact, the machine ma..."}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedReview((prev) =>
+                          prev === "excellent" ? null : "excellent"
+                        )
+                      }
+                      className="ml-1 cursor-pointer font-semibold text-[#1c63e6]"
+                    >
+                      {expandedReview === "excellent" ? "less" : "more"}
+                    </button>
                   </p>
                   <div className="mt-4 text-[14px] text-slate-500">Flipkart Customer</div>
                   <div className="text-[14px] text-slate-400">Verified Buyer</div>
