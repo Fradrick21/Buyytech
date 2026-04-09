@@ -1075,21 +1075,6 @@ function Product({ productId = null }) {
 
         <div className="sticky bottom-3 z-30 pt-2">
           <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={() => navigate("/cart_page")}
-              className="flex h-12 w-full shrink-0 cursor-pointer items-center justify-center rounded-[14px] border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-12"
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </button>
-            <button className="w-full cursor-pointer rounded-[14px] border border-slate-300 bg-white px-5 py-2 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md sm:flex-1 sm:py-1.5">
-              <div className="text-[15px] font-semibold text-slate-800">
-                Buy with EMI
-              </div>
-              <div className="text-[14px] text-slate-600">
-                From <RupeeText value="4,666/m" className="h-[0.9em] w-[0.9em]" />
-              </div>
-            </button>
             <button className="w-full cursor-pointer rounded-[14px] bg-[#ffcc00] px-5 py-3 text-[16px] font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f5c000] hover:shadow-md sm:flex-1">
               Buy at <RupeeText value="41,990" className="h-[0.9em] w-[0.9em]" />
             </button>
