@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 const reviews = [
@@ -115,7 +115,8 @@ const Reviews = () => {
 
     const firstCard = slider.querySelector("[data-review-slide]");
     const cardWidth = firstCard ? firstCard.clientWidth : slider.clientWidth / 5;
-    const gap = 24;
+    const gap =
+      window.innerWidth < 640 ? 12 : window.innerWidth < 768 ? 16 : 24;
     const scrollAmount = cardWidth + gap;
     const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
     const nextPosition = slider.scrollLeft + scrollAmount * direction;
@@ -130,14 +131,6 @@ const Reviews = () => {
       behavior: "smooth",
     });
   };
-
-  useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      scrollCards(1);
-    }, 3500);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
 
   return (
     <section className="w-full bg-white px-3 py-6 sm:px-4 md:px-6">
@@ -176,7 +169,7 @@ const Reviews = () => {
           <div
             key={index}
             data-review-slide
-            className="min-w-full sm:min-w-[48%] md:min-w-[31%] lg:min-w-[18.4%]"
+            className="min-w-[calc(100%-0.75rem)] sm:min-w-[48%] md:min-w-[31%] lg:min-w-[18.4%]"
           >
             <ReviewCard review={review} />
           </div>

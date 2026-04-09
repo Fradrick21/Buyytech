@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronRight,
   Star,
@@ -204,6 +205,7 @@ function OfferCard({ item }) {
 }
 
 function Product({ productId = null }) {
+  const navigate = useNavigate();
   const [selectedMemory, setSelectedMemory] = useState("8 GB");
   const [selectedVariant, setSelectedVariant] = useState(1);
   const images = mediaItems.map((item) => item.image);
@@ -806,7 +808,11 @@ function Product({ productId = null }) {
 
               <div className="hidden sticky bottom-3 z-30 pt-2">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-[14px] border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/cart_page")}
+                    className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-[14px] border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  >
                     <ShoppingCart className="h-5 w-5" />
                   </button>
                   <button className="w-full max-w-[210px] cursor-pointer rounded-[14px] border border-slate-300 bg-white px-5 py-1.5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md">
@@ -1069,7 +1075,11 @@ function Product({ productId = null }) {
 
         <div className="sticky bottom-3 z-30 pt-2">
           <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
-            <button className="flex h-12 w-full shrink-0 cursor-pointer items-center justify-center rounded-[14px] border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-12">
+            <button
+              type="button"
+              onClick={() => navigate("/cart_page")}
+              className="flex h-12 w-full shrink-0 cursor-pointer items-center justify-center rounded-[14px] border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-12"
+            >
               <ShoppingCart className="h-5 w-5" />
             </button>
             <button className="w-full cursor-pointer rounded-[14px] border border-slate-300 bg-white px-5 py-2 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md sm:flex-1 sm:py-1.5">

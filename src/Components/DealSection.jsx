@@ -122,10 +122,10 @@ const DealsSection = () => {
             {/* PRICE */}
             <div className="flex items-center justify-center gap-2 mt-1">
               <span className="text-[#113768CC] text-sm font-semibold">
-                ${item.price}
+                ₹{item.price}
               </span>
               <span className="line-through text-gray-400 text-xs">
-                ${item.oldPrice}
+                ₹{item.oldPrice}
               </span>
             </div>
 
