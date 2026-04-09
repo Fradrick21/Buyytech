@@ -199,7 +199,7 @@ const Product_list = () => {
   };
 
   const handleProductClick = (productId) => {
-    navigate(`/product`, { state: { productId } });
+    navigate("/product_details", { state: { productId } });
   };
 
   // Show products filtered by selected brands and the current price range.

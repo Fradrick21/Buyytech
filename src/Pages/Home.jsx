@@ -1,15 +1,20 @@
 import React from 'react'
-import Product_list from "../Components/Product_list";
-import { Toaster } from "react-hot-toast";
-import ShowOfferToast from "../Components/showOfferToast";
+import HeroSlider from '../Components/HeroSlider'
+import CategoryGrid from '../Components/CategoryGrid'
+import DealSection from '../Components/DealSection'
+import HeroDealsBanner from '../Components/HeroDealsBanner'
+import Reviews from '../Components/Reviews'
+
 const Home = () => {
   return (
     <div>
-        <Product_list></Product_list>
-        <Toaster position="bottom-right" />
-        <ShowOfferToast />
+        <HeroSlider></HeroSlider>
+        <CategoryGrid></CategoryGrid>
+        <DealSection></DealSection>
+        <HeroDealsBanner></HeroDealsBanner>
+        <Reviews></Reviews>
     </div>
   )
 }
 
-export default Home
+export default Home;

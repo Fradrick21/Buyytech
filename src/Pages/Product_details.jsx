@@ -1,10 +1,14 @@
 import React from 'react'
+import { useLocation } from "react-router-dom";
 import Product from '../Components/Product'
 
 const Product_details = () => {
+  const location = useLocation();
+  const productId = location.state?.productId ?? null;
+
   return (
     <div>
-        <Product></Product>
+        <Product productId={productId}></Product>
     </div>
   )
 }

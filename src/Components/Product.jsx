@@ -203,7 +203,7 @@ function OfferCard({ item }) {
   );
 }
 
-function Product() {
+function Product({ productId = null }) {
   const [selectedMemory, setSelectedMemory] = useState("8 GB");
   const [selectedVariant, setSelectedVariant] = useState(1);
   const images = mediaItems.map((item) => item.image);
@@ -219,7 +219,10 @@ function Product() {
     variants.find((item) => item.id === selectedVariant) ?? variants[0];
 
   return (
-    <div className="min-h-screen bg-white px-2 py-3 pb-24 sm:px-3 md:px-4 lg:px-5">
+    <div
+      className="min-h-screen bg-white px-2 py-3 pb-24 sm:px-3 md:px-4 lg:px-5"
+      data-product-id={productId ?? undefined}
+    >
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-4 hidden overflow-hidden text-ellipsis whitespace-nowrap text-[13px] text-slate-500 md:block">
           Home / Computers / Laptops /
