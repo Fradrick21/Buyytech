@@ -59,6 +59,71 @@ const Accountlist = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
 
   const activePanel = desktopPanels[activeItem];
+  const renderPanelContent = () => {
+    if (activeItem === "Orders") {
+      return <Orders />;
+    }
+
+    if (activeItem === "Wishlist") {
+      return <Wishlist />;
+    }
+
+    if (activeItem === "My Address") {
+      return <AddressSection />;
+    }
+
+    if (activeItem === "My Account") {
+      return <Account_details />;
+    }
+
+    if (activeItem === "My Password") {
+      return <Password />;
+    }
+
+    return (
+      <>
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0E9488]">
+              {activeItem}
+            </p>
+            <h1 className="mt-3 text-3xl font-bold text-gray-900">
+              {activePanel.title}
+            </h1>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-gray-600">
+              {activePanel.description}
+            </p>
+          </div>
+
+          <div className="hidden rounded-2xl bg-gray-50 px-5 py-4 text-right xl:block">
+            <p className="text-sm text-gray-500">Status</p>
+            <p className="mt-1 text-lg font-semibold text-gray-900">Active</p>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-sm text-gray-500">Quick Access</p>
+            <p className="mt-2 text-lg font-semibold text-gray-900">
+              Update profile or check recent activity
+            </p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-sm text-gray-500">Security</p>
+            <p className="mt-2 text-lg font-semibold text-gray-900">
+              Keep your account details safe and updated
+            </p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-sm text-gray-500">Orders</p>
+            <p className="mt-2 text-lg font-semibold text-gray-900">
+              Track purchases and delivery progress
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  };
 
   return (
     <div className="w-full bg-gray-50 px-4 py-8 md:px-6 lg:px-8">
@@ -88,6 +153,10 @@ const Accountlist = () => {
               );
             })}
           </div>
+
+          <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm lg:hidden">
+            {renderPanelContent()}
+          </section>
 
           {/* Desktop: polished sidebar + content */}
           <aside className="hidden rounded-3xl border border-gray-200 bg-white p-4 shadow-sm lg:block">
@@ -126,59 +195,7 @@ const Accountlist = () => {
           </aside>
 
           <section className="hidden rounded-3xl border border-gray-200 bg-white p-8 shadow-sm lg:block">
-            {activeItem === "Orders" ? (
-              <Orders />
-            ) : activeItem === "Wishlist" ? (
-              <Wishlist />
-            ) : activeItem === "My Address" ? (
-              <AddressSection />
-            ) : activeItem === "My Account" ? (
-              <Account_details />
-            ) : activeItem === "My Password" ? (
-              <Password />
-            ) : (
-              <>
-                <div className="flex items-start justify-between gap-6">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0E9488]">
-                      {activeItem}
-                    </p>
-                    <h1 className="mt-3 text-3xl font-bold text-gray-900">
-                      {activePanel.title}
-                    </h1>
-                    <p className="mt-3 max-w-2xl text-base leading-7 text-gray-600">
-                      {activePanel.description}
-                    </p>
-                  </div>
-
-                  <div className="hidden rounded-2xl bg-gray-50 px-5 py-4 text-right xl:block">
-                    <p className="text-sm text-gray-500">Status</p>
-                    <p className="mt-1 text-lg font-semibold text-gray-900">Active</p>
-                  </div>
-                </div>
-
-                <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-sm text-gray-500">Quick Access</p>
-                    <p className="mt-2 text-lg font-semibold text-gray-900">
-                      Update profile or check recent activity
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-sm text-gray-500">Security</p>
-                    <p className="mt-2 text-lg font-semibold text-gray-900">
-                      Keep your account details safe and updated
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-sm text-gray-500">Orders</p>
-                    <p className="mt-2 text-lg font-semibold text-gray-900">
-                      Track purchases and delivery progress
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
+            {renderPanelContent()}
           </section>
         </div>
       </div>
