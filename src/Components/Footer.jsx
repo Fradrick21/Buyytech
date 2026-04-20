@@ -6,35 +6,36 @@ import {
   Phone,
   Printer,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import googlePlayBadge from "../assets/google-play-badge.jpeg";
 import appStoreBadge from "../assets/app-store-badge.jpeg";
 
 const aboutLinks = [
-  "About Us",
-  "Terms & Conditions",
-  "Careers",
-  "Latest News",
-  "Contact Us",
-  "Privacy Policy",
+  { label: "About Us", href: "/about" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Careers", href: "#" },
+  { label: "Latest News", href: "#" },
+  { label: "Contact Us", href: "#" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 const accountLinks = [
-  "Your Account",
-  "Return Policies",
-  "Become a Vendor",
-  "Wishlist",
-  "Affiliate Program",
-  "FAQs",
+  { label: "Your Account", href: "/myaccount" },
+  { label: "Return Policies", href: "#" },
+  { label: "Become a Vendor", href: "#" },
+  { label: "Wishlist", href: "/wishlist" },
+  { label: "Affiliate Program", href: "#" },
+  { label: "FAQs", href: "/faq" },
 ];
 
 const categoryLinks = [
-  "Healthcare",
-  "Fashion",
-  "Organic",
-  "Beauty",
-  "Groceries",
-  "Fashion",
+  { label: "Healthcare", href: "/product" },
+  { label: "Fashion", href: "/product" },
+  { label: "Organic", href: "/product" },
+  { label: "Beauty", href: "/product" },
+  { label: "Groceries", href: "/product" },
+  { label: "Fashion", href: "/product" },
 ];
 
 const contactInfo = [
@@ -147,17 +148,37 @@ function LinkColumn({ title, items }) {
       <div className="mt-5 h-px w-full bg-white/20 sm:mt-7" />
 
       <ul className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
-        {items.map((item) => (
-          <li
-            key={item}
-            className="group flex cursor-pointer items-center gap-3 text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]"
-          >
-            <ChevronRight className="h-4 w-4 shrink-0" />
-            <span className="decoration-[#bff6ee] underline-offset-4 group-hover:underline">
-              {item}
-            </span>
-          </li>
-        ))}
+        {items.map((item) => {
+          const label = typeof item === "string" ? item : item.label;
+          const href = typeof item === "string" ? "#" : item.href;
+          const content = (
+            <>
+              <ChevronRight className="h-4 w-4 shrink-0" />
+              <span className="decoration-[#bff6ee] underline-offset-4 group-hover:underline">
+                {label}
+              </span>
+            </>
+          );
+
+          if (href && href !== "#") {
+            return (
+              <li key={label} className="group text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]">
+                <Link to={href} className="flex items-center gap-3">
+                  {content}
+                </Link>
+              </li>
+            );
+          }
+
+          return (
+            <li
+              key={label}
+              className="group flex cursor-pointer items-center gap-3 text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]"
+            >
+              {content}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

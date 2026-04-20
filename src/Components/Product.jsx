@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   ChevronRight,
   Star,
@@ -222,6 +224,13 @@ function Product({ productId = null }) {
   const selectedVariantData =
     variants.find((item) => item.id === selectedVariant) ?? variants[0];
 
+  useEffect(() => {
+    AOS.init({
+      duration: 900, // global animation duration
+      once: true      // animation only once
+    });
+  }, []);
+
   return (
     <div
       className="min-h-screen bg-white px-2 py-3 pb-24 sm:px-3 md:px-4 lg:px-5"
@@ -235,7 +244,7 @@ function Product({ productId = null }) {
 
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_480px]">
           <div className="max-w-7xl self-start px-1 py-4 sm:px-2 sm:py-6 lg:sticky lg:top-24 lg:px-4 lg:py-10">
-            <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[88px_minmax(0,1fr)] lg:gap-10">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[88px_minmax(0,1fr)] lg:gap-10" data-aos="fade-up">
               <div className="order-2 flex gap-3 overflow-x-auto pb-2 lg:order-1 lg:flex-col lg:overflow-visible lg:pb-0">
                 {images.map((img, i) => (
                   <img

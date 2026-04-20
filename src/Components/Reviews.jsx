@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef,useEffect } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const reviews = [
   {
@@ -54,8 +56,15 @@ const ReviewCard = ({ review }) => {
     .slice(0, 2)
     .toUpperCase();
 
+     useEffect(() => {
+      AOS.init({
+        duration: 900, // global animation duration
+        once: true      // animation only once
+      });
+    }, []);
+
   return (
-    <div className="group relative h-full overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]">
+    <div className="group relative h-full overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]" data-aos="fade-up">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400" />
       <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-orange-100/60 blur-2xl transition duration-300 group-hover:bg-orange-200/70" />
 

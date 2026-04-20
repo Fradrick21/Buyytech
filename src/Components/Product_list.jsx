@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Product_list = () => {
+
+    useEffect(() => {
+    AOS.init({
+      duration: 900, // global animation duration
+      once: true      // animation only once
+    });
+  }, []);
+
   const navigate = useNavigate();
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [sortBy, setSortBy] = useState("default");
@@ -267,7 +277,7 @@ const Product_list = () => {
           </div>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-6 lg:items-start">
+        <div className="grid gap-4 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-6 lg:items-start" data-aos="fade-up">
           {/* Sticky brand filter sidebar */}
           <aside className="lg:sticky lg:top-6">
             <button
@@ -377,7 +387,7 @@ const Product_list = () => {
                 <div
                   key={p.id}
                   onClick={() => handleProductClick(p.id)}
-                  className="group flex h-full flex-col rounded-xl bg-white p-3 text-center shadow transition hover:shadow-lg"
+                  className="group flex h-full flex-col rounded-xl bg-white p-3 text-center shadow transition hover:shadow-lg" data-aos="fade-up"
                 >
                   <div className="flex items-start justify-end">
                     <button

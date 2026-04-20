@@ -12,6 +12,13 @@ import ShowOfferToast from "./Components/showOfferToast";
 import CartPage from "./Pages/CartPage";
 import Checkout from "./Pages/Checkout";
 import { useEffect } from "react";
+import Login from "./Components/Login";
+import FAQ from "./Components/Faq";
+import Myaccount from "./Pages/Myaccount";
+import Wishlist from "./Components/Wishlist";
+import Aboutus from "./Pages/Aboutus";
+import Privacy from "./Components/Privacy";
+import Terms from "./Components/Terms";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,6 +46,13 @@ function App() {
         <Route path="/product_details" element={<Product_details />}></Route>
         <Route path="/cart_page" element={<CartPage />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/faq" element={<FAQ />}></Route>
+        <Route path="/myaccount" element={<Myaccount />}></Route>
+        <Route path="/wishlist" element={<Wishlist />}></Route>
+        <Route path="/about" element={<Aboutus />}></Route>
+        <Route path="/privacy" element={<Privacy />}></Route>
+        <Route path="/terms" element={<Terms />}></Route>
       </Routes>
 
       <Toaster position="bottom-right" />
@@ -47,7 +61,7 @@ function App() {
       {/* Footer */}
       <Footer></Footer>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;

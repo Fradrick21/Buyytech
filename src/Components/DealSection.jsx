@@ -1,6 +1,9 @@
 import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Star, Heart, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const products = [
   {
@@ -37,6 +40,13 @@ const products = [
 
 const DealsSection = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+  AOS.init({
+    duration: 900, // global animation duration
+    once: true      // animation only once
+  });
+}, []);
 
   return (
     <div className="w-full bg-white py-6 px-3 sm:px-4 md:px-6">
@@ -82,7 +92,7 @@ const DealsSection = () => {
       </div>
 
       {/* PRODUCTS */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 cursor-pointer">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 cursor-pointer" data-aos="fade-up">
 
         {products.map((item, index) => (
           <div

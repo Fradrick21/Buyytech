@@ -25,6 +25,14 @@ const MainNavbar = () => {
     { name: "OTP Verification", icon: <ShieldCheck size={16} /> },
   ];
 
+  const handleAccountMenuClick = (itemName) => {
+    setOpen(false);
+
+    if (itemName === "Login") {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="w-full bg-gray-100 py-3 md:py-4">
       {/* CONTAINER */}
@@ -54,7 +62,8 @@ const MainNavbar = () => {
                   {menu.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100"
+                      className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                      onClick={() => handleAccountMenuClick(item.name)}
                     >
                       {item.icon}
                       <span>{item.name}</span>
@@ -73,7 +82,10 @@ const MainNavbar = () => {
             </div>
 
             {/* WISHLIST ICON */}
-            <div className="bg-yellow-400 p-2 rounded-full">
+            <div
+              className="bg-yellow-400 p-2 rounded-full cursor-pointer"
+              onClick={() => navigate("/wishlist")}
+            >
               <Heart size={18} />
             </div>
           </div>
@@ -94,7 +106,10 @@ const MainNavbar = () => {
         {/* 🔹 RIGHT SIDE (DESKTOP ONLY) */}
         <div className="hidden md:flex items-center gap-8 min-w-[260px] justify-end">
           {/* WISHLIST */}
-          <div className="flex items-center gap-3 cursor-pointer">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => navigate("/wishlist")}
+          >
             <div className="bg-yellow-400 p-3 rounded-full">
               <Heart size={20} />
             </div>
@@ -140,7 +155,8 @@ const MainNavbar = () => {
                 {menu.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100 border-b last:border-none"
+                    className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100 border-b last:border-none cursor-pointer"
+                    onClick={() => handleAccountMenuClick(item.name)}
                   >
                     {item.icon}
                     <span>{item.name}</span>

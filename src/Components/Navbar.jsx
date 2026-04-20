@@ -1,6 +1,8 @@
 import { Headphones, ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
 
   return (
     <div className="w-full bg-[#113768CC] text-white text-xs md:text-sm lg:text-lg font-semibold py-3">
@@ -34,13 +36,22 @@ const Navbar = () => {
 
         {/* 🔹 RIGHT */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-center lg:justify-end text-[10px] sm:text-xs md:text-sm">
-          <span className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4">
+          <span
+            className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
+            onClick={() => navigate("/about")}
+          >
             About us
           </span>
-          <span className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4">
+          <span
+            className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
+            onClick={() => navigate("/myaccount")}
+          >
             My Account
           </span>
-          <span className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4">
+          <span
+            className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
+            onClick={() => navigate("/wishlist")}
+          >
             Wishlist
           </span>
           <span className="cursor-pointer hover:text-yellow-300">

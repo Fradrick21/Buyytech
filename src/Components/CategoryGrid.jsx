@@ -1,4 +1,7 @@
 import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react"; 
 
 const categories = [
   {
@@ -52,10 +55,17 @@ const categories = [
 ];
 
 function CategoryGrid() {
+   useEffect(() => {
+    AOS.init({
+      duration: 900, // global animation duration
+      once: true      // animation only once
+    });
+  }, []);
+
   return (
     <div className="w-full px-3 py-8 sm:px-4 md:px-6 lg:px-8">
       
-      <div className="mx-auto grid w-full max-w-[1700px] grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 md:gap-5 lg:grid-cols-6 lg:gap-6">
+      <div className="mx-auto grid w-full max-w-[1700px] grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 md:gap-5 lg:grid-cols-6 lg:gap-6" data-aos="fade-up">
 
         {categories.map((item, index) => (
           <div

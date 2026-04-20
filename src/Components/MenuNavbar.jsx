@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronDown, LayoutGrid, Headphones, Menu, X } from "lucide-react";
 
 const MenuNavbar = () => {
@@ -6,6 +7,7 @@ const MenuNavbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const categoryRef = useRef(null);
+  const navigate = useNavigate();
 
   const menus = [
     { name: "Home", dropdown: false },
@@ -91,7 +93,13 @@ const MenuNavbar = () => {
               onMouseEnter={() => setActiveDropdown(index)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <div className="flex items-center gap-1 hover:text-teal-700 text-sm lg:text-base">
+              <div
+                className="flex items-center gap-1 hover:text-teal-700 text-sm lg:text-base"
+                onClick={() => {
+                  if (item.name === "Home") navigate("/");
+                  if (item.name === "About Us") navigate("/about");
+                }}
+              >
                 {item.name}
                 {item.dropdown && <ChevronDown size={14} />}
               </div>
@@ -167,7 +175,14 @@ const MenuNavbar = () => {
                       setActiveDropdown(activeDropdown === index ? null : index)
                     }
                   >
-                    <span>{item.name}</span>
+                    <span
+                      onClick={() => {
+                        if (item.name === "Home") navigate("/");
+                        if (item.name === "About Us") navigate("/about");
+                      }}
+                    >
+                      {item.name}
+                    </span>
                     {item.dropdown && <ChevronDown size={16} />}
                   </div>
 
