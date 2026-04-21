@@ -9,28 +9,23 @@ import {
 import { Link } from "react-router-dom";
 import { menuCategories } from "./MenuNavbar";
 
-import googlePlayBadge from "../assets/google-play-badge.jpeg";
-import appStoreBadge from "../assets/app-store-badge.jpeg";
-
 const aboutLinks = [
   { label: "About Us", href: "/about" },
   { label: "Terms & Conditions", href: "/terms" },
-  { label: "Careers", href: "#" },
-  { label: "Latest News", href: "#" },
-  { label: "Contact Us", href: "#" },
   { label: "Privacy Policy", href: "/privacy" },
+  { label: "Return Policies", href: "#" },
 ];
 
 const accountLinks = [
   { label: "Your Account", href: "/myaccount" },
-  { label: "Return Policies", href: "#" },
+  
   { label: "Become a Vendor", href: "#" },
   { label: "Wishlist", href: "/wishlist" },
-  { label: "Affiliate Program", href: "#" },
+  { label: "Contact Us", href: "#" },
   { label: "FAQs", href: "/faq" },
 ];
 
-const categoryLinks = menuCategories.map((label) => ({
+const categoryLinks = menuCategories.slice(0, 7).map((label) => ({
   label,
   href: "/product",
 }));
@@ -86,6 +81,14 @@ function TwitterIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
       <path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.24l-4.9-7.4L5.57 22H2.46l7.24-8.27L.8 2h6.4l4.43 6.76L18.9 2Zm-1.09 18.13h1.72L6.26 3.78H4.42l13.39 16.35Z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M21.8 8.001a3.01 3.01 0 0 0-2.12-2.12C17.82 5.5 12 5.5 12 5.5s-5.82 0-7.68.381A3.01 3.01 0 0 0 2.2 8.001 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .2 3.999 3.01 3.01 0 0 0 2.12 2.12C6.18 18.5 12 18.5 12 18.5s5.82 0 7.68-.381a3.01 3.01 0 0 0 2.12-2.12A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.2-3.999ZM10 15.5v-7l6 3.5-6 3.5Z" />
     </svg>
   );
 }
@@ -278,32 +281,21 @@ function Footer() {
                   </a>
                 ))}
 
-                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#113768cc] sm:h-11 sm:w-11">
-                  <span className="text-sm font-semibold sm:text-base">Be</span>
-                </button>
-              </div>
-
-              <h4 className="mt-7 text-[17px] font-semibold text-[#e7fff8] sm:mt-8 sm:text-[18px]">
-                Download Our App:
-              </h4>
-
-              <div className="mt-4 flex items-center justify-center gap-3 px-4 sm:mt-5 sm:px-6">
-                <img
-                  src={googlePlayBadge}
-                  alt="Get it on Google Play"
-                  className="h-[42px] w-auto shrink-0 object-contain sm:h-[48px]"
-                />
-                <img
-                  src={appStoreBadge}
-                  alt="Download on the App Store"
-                  className="h-[42px] w-auto shrink-0 object-contain sm:h-[48px]"
-                />
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="YouTube"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#113768cc] sm:h-11 sm:w-11"
+                >
+                  <YouTubeIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                </a>
               </div>
             </div>
 
             <LinkColumn title="About" items={aboutLinks} />
             <LinkColumn title="My Account" items={accountLinks} />
-            <LinkColumn title="Categories" items={categoryLinks} twoColumns />
+            <LinkColumn title="Categories" items={categoryLinks} />
 
             <div className="pt-2 sm:pt-3">
               <h3 className="text-[17px] font-semibold tracking-[-0.03em] text-[#e7fff8] sm:text-[18px]">

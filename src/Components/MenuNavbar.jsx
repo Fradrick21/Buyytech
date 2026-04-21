@@ -52,6 +52,12 @@ const MenuNavbar = () => {
     };
   }, []);
 
+  const handleCategoryClick = () => {
+    setCategoryOpen(false);
+    setOpen(false);
+    navigate("/product");
+  };
+
   return (
     <div className="w-full bg-white border-t border-b border-gray-200 text-sm md:text-base lg:text-lg font-semibold">
 
@@ -76,6 +82,7 @@ const MenuNavbar = () => {
                 <p
                   key={category}
                   className="cursor-pointer rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-[#113768CC]"
+                  onClick={handleCategoryClick}
                 >
                   {category}
                 </p>
@@ -158,6 +165,7 @@ const MenuNavbar = () => {
                 <p
                   key={category}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-white"
+                  onClick={handleCategoryClick}
                 >
                   {category}
                 </p>

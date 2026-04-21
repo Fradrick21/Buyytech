@@ -67,11 +67,6 @@ const DealsSection = () => {
         {/* RIGHT */}
         <div className="flex flex-wrap justify-center md:justify-end items-center gap-2 sm:gap-3">
 
-          {/* TIMER */}
-          <div className="bg-yellow-200 px-3 py-2 sm:px-4 sm:py-3 rounded-full text-xs sm:text-sm font-semibold">
-            Ends in: 268 : 08 : 51 : 59
-          </div>
-
           {/* VIEW ALL */}
           <a href="#" className="bg-[#113768CC] text-white px-4 py-2 sm:px-5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold">
             View All
@@ -98,7 +93,7 @@ const DealsSection = () => {
           <div
             key={index}
             className="bg-white rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md transition cursor-pointer"
-            onClick={() => navigate("/product")}
+            onClick={() => navigate("/product_details")}
           >
 
             {/* IMAGE */}
@@ -108,11 +103,6 @@ const DealsSection = () => {
                 alt=""
                 className="h-32 sm:h-40 md:h-52 object-contain"
               />
-            </div>
-
-            {/* TIMER BADGE */}
-            <div className="bg-red-100 text-red-950 text-[10px] sm:text-xs px-2 py-1 rounded-full mt-2 inline-block font-semibold">
-              268 Days : 08H : 51M : 59S
             </div>
 
             {/* TITLE */}
