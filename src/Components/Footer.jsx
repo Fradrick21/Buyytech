@@ -7,6 +7,7 @@ import {
   Printer,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { menuCategories } from "./MenuNavbar";
 
 import googlePlayBadge from "../assets/google-play-badge.jpeg";
 import appStoreBadge from "../assets/app-store-badge.jpeg";
@@ -29,14 +30,10 @@ const accountLinks = [
   { label: "FAQs", href: "/faq" },
 ];
 
-const categoryLinks = [
-  { label: "Healthcare", href: "/product" },
-  { label: "Fashion", href: "/product" },
-  { label: "Organic", href: "/product" },
-  { label: "Beauty", href: "/product" },
-  { label: "Groceries", href: "/product" },
-  { label: "Fashion", href: "/product" },
-];
+const categoryLinks = menuCategories.map((label) => ({
+  label,
+  href: "/product",
+}));
 
 const contactInfo = [
   {
@@ -138,7 +135,7 @@ const paymentBadges = [
   },
 ];
 
-function LinkColumn({ title, items }) {
+function LinkColumn({ title, items, twoColumns = false }) {
   return (
     <div className="pt-2 sm:pt-3">
       <h3 className="text-[17px] font-semibold tracking-[-0.03em] text-[#e7fff8] sm:text-[18px]">
@@ -147,39 +144,64 @@ function LinkColumn({ title, items }) {
 
       <div className="mt-5 h-px w-full bg-white/20 sm:mt-7" />
 
-      <ul className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
-        {items.map((item) => {
-          const label = typeof item === "string" ? item : item.label;
-          const href = typeof item === "string" ? "#" : item.href;
-          const content = (
-            <>
-              <ChevronRight className="h-4 w-4 shrink-0" />
-              <span className="decoration-[#bff6ee] underline-offset-4 group-hover:underline">
-                {label}
-              </span>
-            </>
-          );
+      {twoColumns ? (
+        <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-3 sm:mt-7 sm:grid-cols-2">
+          {items.map((item) => {
+            const label = typeof item === "string" ? item : item.label;
+            const href = typeof item === "string" ? "#" : item.href;
 
-          if (href && href !== "#") {
             return (
-              <li key={label} className="group text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]">
-                <Link to={href} className="flex items-center gap-3">
-                  {content}
-                </Link>
+              <li key={label} className="text-[14px] font-medium text-white/95 transition hover:text-[#bff6ee] sm:text-[15px]">
+                {href && href !== "#" ? (
+                  <Link to={href} className="flex items-center gap-2 leading-6">
+                    <ChevronRight className="h-4 w-4 shrink-0" />
+                    <span>{label}</span>
+                  </Link>
+                ) : (
+                  <span className="flex items-center gap-2 leading-6">
+                    <ChevronRight className="h-4 w-4 shrink-0" />
+                    <span>{label}</span>
+                  </span>
+                )}
               </li>
             );
-          }
+          })}
+        </ul>
+      ) : (
+        <ul className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
+          {items.map((item) => {
+            const label = typeof item === "string" ? item : item.label;
+            const href = typeof item === "string" ? "#" : item.href;
+            const content = (
+              <>
+                <ChevronRight className="h-4 w-4 shrink-0" />
+                <span className="decoration-[#bff6ee] underline-offset-4 group-hover:underline">
+                  {label}
+                </span>
+              </>
+            );
 
-          return (
-            <li
-              key={label}
-              className="group flex cursor-pointer items-center gap-3 text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]"
-            >
-              {content}
-            </li>
-          );
-        })}
-      </ul>
+            if (href && href !== "#") {
+              return (
+                <li key={label} className="group text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]">
+                  <Link to={href} className="flex items-center gap-3">
+                    {content}
+                  </Link>
+                </li>
+              );
+            }
+
+            return (
+              <li
+                key={label}
+                className="group flex cursor-pointer items-center gap-3 text-[14px] font-medium text-white/95 transition hover:translate-x-1 hover:text-[#bff6ee] sm:text-[15px]"
+              >
+                {content}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
@@ -281,7 +303,7 @@ function Footer() {
 
             <LinkColumn title="About" items={aboutLinks} />
             <LinkColumn title="My Account" items={accountLinks} />
-            <LinkColumn title="Categories" items={categoryLinks} />
+            <LinkColumn title="Categories" items={categoryLinks} twoColumns />
 
             <div className="pt-2 sm:pt-3">
               <h3 className="text-[17px] font-semibold tracking-[-0.03em] text-[#e7fff8] sm:text-[18px]">

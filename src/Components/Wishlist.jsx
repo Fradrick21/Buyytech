@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, ShoppingCart, Trash2, Minus, Plus } from "lucide-react";
+import { ShoppingCart, Trash2, Minus, Plus } from "lucide-react";
 
 const wishlistItems = [
   {
@@ -36,7 +36,10 @@ const wishlistItems = [
 
 const stars = (count) =>
   Array.from({ length: 5 }, (_, index) => (
-    <span key={index} className={index < count ? "text-yellow-400" : "text-gray-300"}>
+    <span
+      key={index}
+      className={index < count ? "text-yellow-400" : "text-gray-300"}
+    >
       ★
     </span>
   ));
@@ -45,34 +48,22 @@ const Wishlist = () => {
   return (
     <div className="w-full bg-gray-50 px-4 py-8 md:px-6 lg:px-8">
       <div className="w-full">
-      <div className="mb-5 flex flex-col gap-3 border-b border-gray-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">
-            Wishlist
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">3 items is selected</p>
+        <div className="mb-5 flex flex-col gap-3 border-b border-gray-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">
+              Wishlist
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">3 items is selected</p>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-5">
-        {wishlistItems.map((item, index) => (
-          <div
-            key={`${item.name}-${index}`}
-            className="relative rounded-3xl border border-gray-200 bg-white p-5 shadow-sm"
-          >
-            <div className="absolute right-4 top-4 h-4 w-4 rounded-sm border border-gray-300 bg-white" />
-
-            <div className="grid gap-6 lg:grid-cols-[160px_1fr]">
-              <div className="hidden rounded-2xl bg-gray-50 p-4 lg:block">
-                <div className="space-y-6 text-sm text-gray-500">
-                  <p>Product</p>
-                  <p>Stock</p>
-                  <p>Price</p>
-                  <p>Quantity</p>
-                  <p>Buy Action</p>
-                  <p>Remove</p>
-                </div>
-              </div>
+        <div className="space-y-5">
+          {wishlistItems.map((item, index) => (
+            <div
+              key={`${item.name}-${index}`}
+              className="relative rounded-3xl border border-gray-200 bg-white p-5 shadow-sm"
+            >
+              <div className="absolute right-4 top-4 h-4 w-4 rounded-sm border border-gray-300 bg-white" />
 
               <div className="grid gap-5 lg:grid-cols-[1fr_260px] lg:items-start">
                 <div className="flex items-start gap-4">
@@ -88,7 +79,9 @@ const Wishlist = () => {
 
                     <div className="mt-2 flex items-center gap-1 text-sm">
                       {stars(item.rating)}
-                      <span className="ml-1 text-gray-500">({item.reviews})</span>
+                      <span className="ml-1 text-gray-500">
+                        ({item.reviews})
+                      </span>
                     </div>
 
                     <p className="mt-2 text-sm font-semibold text-emerald-600">
@@ -140,7 +133,7 @@ const Wishlist = () => {
                     </button>
                     <button
                       type="button"
-                      className="inline-flex items-center gap-2 rounded-full bg-[#113768CC] px-5 py-2.5 text-sm font-semibold text-white transition "
+                      className="inline-flex items-center gap-2 rounded-full bg-[#113768CC] px-5 py-2.5 text-sm font-semibold text-white transition"
                     >
                       <ShoppingCart size={16} />
                       Add To Cart
@@ -154,9 +147,8 @@ const Wishlist = () => {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </div>
   );

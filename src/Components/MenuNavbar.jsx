@@ -2,6 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown, LayoutGrid, Headphones, Menu, X } from "lucide-react";
 
+export const menuCategories = [
+  "Computers",
+  "Laptops",
+  "Computer Components",
+  "Laptop & Computer Accessories",
+  "Storage Devices",
+  "Networking Devices",
+  "Monitors & Displays",
+  "Printers & Scanners",
+  "CCTV & Security Systems",
+  "Mobile & Tablet Accessories",
+  "Audio & Entertainment",
+  "Gaming Accessories",
+  "Smart Devices",
+  "Power & Backup",
+  "Office & IT Essentials",
+];
+
 const MenuNavbar = () => {
   const [open, setOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -18,24 +36,6 @@ const MenuNavbar = () => {
     { name: "Blog", dropdown: true },
     { name: "Pages", dropdown: true },
     { name: "Contact", dropdown: false },
-  ];
-
-  const categories = [
-    "Computers",
-    "Laptops",
-    "Computer Components",
-    "Laptop & Computer Accessories",
-    "Storage Devices",
-    "Networking Devices",
-    "Monitors & Displays",
-    "Printers & Scanners",
-    "CCTV & Security Systems",
-    "Mobile & Tablet Accessories",
-    "Audio & Entertainment",
-    "Gaming Accessories",
-    "Smart Devices",
-    "Power & Backup",
-    "Office & IT Essentials"
   ];
 
   useEffect(() => {
@@ -67,12 +67,12 @@ const MenuNavbar = () => {
           >
             <LayoutGrid size={18} />
             <span className="hidden sm:inline">Explore All Categories</span>
-            <ChevronDown size={16} />
-          </button>
+              <ChevronDown size={16} />
+            </button>
 
           {categoryOpen && (
             <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-gray-100 bg-white p-2 shadow-lg">
-              {categories.map((category) => (
+              {menuCategories.map((category) => (
                 <p
                   key={category}
                   className="cursor-pointer rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-[#113768CC]"
@@ -154,7 +154,7 @@ const MenuNavbar = () => {
           {categoryOpen && (
             <div className="space-y-1 rounded-xl border border-gray-200 bg-gray-50 p-3">
               <p className="mb-2 text-sm font-semibold text-gray-800">All Categories</p>
-              {categories.map((category) => (
+              {menuCategories.map((category) => (
                 <p
                   key={category}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-white"
