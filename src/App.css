@@ -1,1 +1,83 @@
 @import "tailwindcss";
+
+@media print {
+  @page {
+    size: A4;
+    margin: 4mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0 !important;
+  }
+
+  body > :not(.invoice-print-root) {
+    display: none !important;
+  }
+
+  .invoice-print-root {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .invoice-print-root > div {
+    width: 100% !important;
+    max-width: none !important;
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .invoice-sheet {
+    width: 760px !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    zoom: 0.87 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .invoice-topbar {
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+  }
+
+  .invoice-no-print {
+    display: none !important;
+  }
+
+  .invoice-sheet .print-tight {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .invoice-sheet .print-compact {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    min-height: 118px !important;
+  }
+
+  .invoice-sheet .print-compact-text {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+
+  .invoice-sheet .print-compact table {
+    font-size: 11px !important;
+  }
+
+  .invoice-sheet .print-compact th,
+  .invoice-sheet .print-compact td {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+}
