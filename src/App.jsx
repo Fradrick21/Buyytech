@@ -13,12 +13,14 @@ import CartPage from "./Pages/CartPage";
 import Checkout from "./Pages/Checkout";
 import { useEffect } from "react";
 import Login from "./Components/Login";
+import Register from "./Components/Register";
 import FAQ from "./Components/Faq";
 import Myaccount from "./Pages/Myaccount";
 import Wishlist from "./Components/Wishlist";
 import Aboutus from "./Pages/Aboutus";
 import Privacy from "./Components/Privacy";
 import Terms from "./Components/Terms";
+import Orders from "./Components/Orders";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,8 +49,10 @@ function App() {
         <Route path="/cart_page" element={<CartPage />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/faq" element={<FAQ />}></Route>
         <Route path="/myaccount" element={<Myaccount />}></Route>
+        <Route path="/orders" element={<Orders />}></Route>
         <Route path="/wishlist" element={<Wishlist />}></Route>
         <Route path="/about" element={<Aboutus />}></Route>
         <Route path="/privacy" element={<Privacy />}></Route>

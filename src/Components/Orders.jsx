@@ -285,7 +285,8 @@ const Orders = () => {
   };
 
   return (
-    <div className="orders-page w-full">
+    <div className="orders-page w-full bg-gray-50 px-4 py-8 md:px-6 lg:px-8">
+      <div className="w-full">
       <div className="mb-5 flex items-center justify-between gap-4">
         <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">
           Orders History
@@ -595,6 +596,7 @@ const Orders = () => {
           </div>,
           document.body
         )}
+      </div>
     </div>
   );
 };

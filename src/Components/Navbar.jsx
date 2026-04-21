@@ -38,23 +38,14 @@ const Navbar = () => {
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-center lg:justify-end text-[10px] sm:text-xs md:text-sm">
           <span
             className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
-            onClick={() => navigate("/about")}
-          >
-            About us
-          </span>
-          <span
-            className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
             onClick={() => navigate("/myaccount")}
           >
             My Account
           </span>
           <span
-            className="cursor-pointer hover:text-yellow-300 md:border-r md:border-white md:px-3 lg:px-4"
-            onClick={() => navigate("/wishlist")}
+            className="cursor-pointer hover:text-yellow-300"
+            onClick={() => navigate("/orders")}
           >
-            Wishlist
-          </span>
-          <span className="cursor-pointer hover:text-yellow-300">
             Track Order
           </span>
         </div>

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   User,
   ChevronDown,
-  LogIn,
-  UserPlus,
+  MapPin,
+  UserRound,
   KeyRound,
-  Lock,
-  ShieldCheck,
+  LogOut,
   Search,
   ShoppingCart,
   Heart,
@@ -16,19 +15,84 @@ import {
 const MainNavbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const mobileAccountMenuRef = useRef(null);
+  const desktopAccountMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      const insideMobile =
+        mobileAccountMenuRef.current &&
+        mobileAccountMenuRef.current.contains(event.target);
+      const insideDesktop =
+        desktopAccountMenuRef.current &&
+        desktopAccountMenuRef.current.contains(event.target);
+
+      if (!insideMobile && !insideDesktop) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
   const menu = [
-    { name: "Login", icon: <LogIn size={16} /> },
-    { name: "Register", icon: <UserPlus size={16} /> },
+    { name: "Login", icon: <User size={16} /> },
+    { name: "Register", icon: <User size={16} /> },
     { name: "Forgot Password", icon: <KeyRound size={16} /> },
-    { name: "Set Password", icon: <Lock size={16} /> },
-    { name: "OTP Verification", icon: <ShieldCheck size={16} /> },
+    { name: "Set Password", icon: <KeyRound size={16} /> },
+    { name: "OTP Verification", icon: <KeyRound size={16} /> },
+    { name: "My Address", icon: <MapPin size={16} /> },
+    { name: "My Account", icon: <UserRound size={16} /> },
+    { name: "My Password", icon: <KeyRound size={16} /> },
+    { name: "Logout", icon: <LogOut size={16} /> },
   ];
 
   const handleAccountMenuClick = (itemName) => {
     setOpen(false);
 
+    if (itemName === "My Address") {
+      navigate("/myaccount", { state: { section: "My Address" } });
+      return;
+    }
+
+    if (itemName === "My Account") {
+      navigate("/myaccount", { state: { section: "My Account" } });
+      return;
+    }
+
+    if (itemName === "My Password") {
+      navigate("/myaccount", { state: { section: "My Password" } });
+      return;
+    }
+
+    if (itemName === "Logout") {
+      navigate("/login");
+      return;
+    }
+
     if (itemName === "Login") {
+      navigate("/login");
+      return;
+    }
+
+    if (itemName === "Register") {
+      navigate("/register");
+      return;
+    }
+
+    if (itemName === "Forgot Password") {
+      navigate("/login");
+      return;
+    }
+
+    if (itemName === "Set Password") {
+      navigate("/login");
+      return;
+    }
+
+    if (itemName === "OTP Verification") {
       navigate("/login");
     }
   };
@@ -51,7 +115,11 @@ const MainNavbar = () => {
           {/* MOBILE RIGHT ICONS */}
           <div className="flex items-center gap-3 md:hidden">
             {/* ACCOUNT ICON */}
-            <div className="relative" onClick={() => setOpen(!open)}>
+            <div
+              ref={mobileAccountMenuRef}
+              className="relative"
+              onClick={() => setOpen(!open)}
+            >
               <div className="bg-yellow-400 p-2 rounded-full">
                 <User size={18} />
               </div>
@@ -135,6 +203,7 @@ const MainNavbar = () => {
 
           {/* ACCOUNT */}
           <div
+            ref={desktopAccountMenuRef}
             className="relative flex items-center gap-3 cursor-pointer"
             onClick={() => setOpen(!open)}
           >

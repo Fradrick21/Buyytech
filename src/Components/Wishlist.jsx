@@ -43,7 +43,8 @@ const stars = (count) =>
 
 const Wishlist = () => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-gray-50 px-4 py-8 md:px-6 lg:px-8">
+      <div className="w-full">
       <div className="mb-5 flex flex-col gap-3 border-b border-gray-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">
@@ -155,6 +156,7 @@ const Wishlist = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

@@ -1,10 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validate = () => {
+    const nextErrors = {};
+    const email = form.email.trim();
+    const password = form.password;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email) {
+      nextErrors.email = "Email is required.";
+    } else if (!emailPattern.test(email)) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+
+    if (!password) {
+      nextErrors.password = "Password is required.";
+    } else if (password.length < 6) {
+      nextErrors.password = "Password must be at least 6 characters.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
+
+    navigate("/");
+  };
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -32,29 +75,54 @@ const Login = () => {
         </div>
 
         {/* Form */}
-        <div className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email *"
-            className="w-full border rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-[#113768CC]"
-          />
+        <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+          <div>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email *"
+              className={`w-full border rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-[#113768CC] ${
+                errors.email ? "border-rose-500" : "border-gray-300"
+              }`}
+            />
+            {errors.email && (
+              <p className="mt-1 px-2 text-sm text-rose-600">{errors.email}</p>
+            )}
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password *"
-            className="w-full border rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-[#113768CC]"
-          />
-        </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Password *"
+              className={`w-full border rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-[#113768CC] ${
+                errors.password ? "border-rose-500" : "border-gray-300"
+              }`}
+            />
+            {errors.password && (
+              <p className="mt-1 px-2 text-sm text-rose-600">{errors.password}</p>
+            )}
+          </div>
 
-        {/* Forgot Password */}
-        <div className="text-right mt-2">
-          <button className="text-[#113768CC] text-sm cursor-pointer">Forgot Password?</button>
-        </div>
+          {/* Forgot Password */}
+          <div className="text-right mt-2">
+            <button type="button" className="text-[#113768CC] text-sm cursor-pointer">
+              Forgot Password?
+            </button>
+          </div>
 
-        {/* Sign In Button */}
-        <button className="w-full mt-4 bg-[#113768CC] text-white py-3 rounded-full font-semibold transition cursor-pointer">
-          Sign In
-        </button>
+          {/* Sign In Button */}
+          <button
+            type="submit"
+            className="w-full mt-4 bg-[#113768CC] text-white py-3 rounded-full font-semibold transition cursor-pointer"
+          >
+            Sign In
+          </button>
+        </form>
 
                 {/* Divider */}
         <div className="flex items-center gap-3 my-4">
@@ -77,9 +145,13 @@ const Login = () => {
         {/* Signup */}
         <p className="text-center text-gray-500 mt-4">
           Don't have an account?{" "}
-          <span className="text-[#113768CC] font-medium cursor-pointer">
+          <button
+            type="button"
+            onClick={() => navigate("/register")}
+            className="text-[#113768CC] font-medium cursor-pointer"
+          >
             Sign Up
-          </span>
+          </button>
         </p>
       </div>
     </div>
